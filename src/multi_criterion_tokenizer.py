@@ -13,12 +13,12 @@ import torch
 
 class MultiCriterionTokenizer(Model):
     def __init__(self,
-                 word_embeddings: TextFieldEmbedder,
+                 char_embeddings: TextFieldEmbedder,
                  criterion_embeddings: Embedding,
                  encoder: Seq2SeqEncoder,
                  vocab: Vocabulary) -> None:
         super().__init__(vocab)
-        self.word_embeddings = word_embeddings
+        self.char_embeddings = char_embeddings
         self.criterion_embeddings = criterion_embeddings
         self.encoder = encoder
         self.hidden2tag = torch.nn.Linear(in_features=encoder.get_output_dim(),
@@ -30,10 +30,9 @@ class MultiCriterionTokenizer(Model):
                 criterion_types: torch.Tensor,
                 labels: torch.Tensor = None) -> Dict[str, torch.Tensor]:
         mask = get_text_field_mask(sentence)
-        word_embeddings = self.word_embeddings(sentence)
+        char_embeddings = self.char_embeddings(sentence)
         criterion_embeddings = self.criterion_embeddings(criterion_types)
-        # embeddings = torch.cat([word_embeddings, criterion_embeddings], -1)
-        embeddings = word_embeddings + criterion_embeddings
+        embeddings = char_embeddings + criterion_embeddings
         encoder_out = self.encoder(embeddings, mask)
         tag_logits = self.hidden2tag(encoder_out)
         output = {"tag_logits": tag_logits}
