@@ -9,7 +9,7 @@ from allennlp.data.dataset_readers import DatasetReader
 from allennlp.data.token_indexers import TokenIndexer, SingleIdTokenIndexer
 from allennlp.data.tokenizers import Token
 
-from tag_scheme import get_token_bio_from_strs
+from many_tokenizer_as_one_model.tag_scheme import get_token_bio_from_strs
 
 
 class MultiCriterionDatasetReader(DatasetReader):
