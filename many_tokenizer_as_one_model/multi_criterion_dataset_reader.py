@@ -12,6 +12,7 @@ from allennlp.data.tokenizers import Token
 from many_tokenizer_as_one_model.tag_scheme import get_token_bio_from_strs
 
 
+@DatasetReader.register('multi_criterion_dataset')
 class MultiCriterionDatasetReader(DatasetReader):
     """
     file_path is just proxy to multiple criterion files.

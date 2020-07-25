@@ -11,6 +11,7 @@ from allennlp.training.metrics import CategoricalAccuracy
 import torch
 
 
+@Model.register('multi_criterion_tokenizer')
 class MultiCriterionTokenizer(Model):
     def __init__(self,
                  char_embeddings: TextFieldEmbedder,
