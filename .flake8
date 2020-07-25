@@ -1,0 +1,13 @@
+[flake8]
+show-source = True
+statistics = True
+ignore =
+    # continuation line over-indented for hanging indent
+    E126,
+    # line too long
+    E501,
+    # Do not assign a lambda expression, use a def
+    E731,
+    # line break after binary operator
+    W504
+exclude = .venv/*

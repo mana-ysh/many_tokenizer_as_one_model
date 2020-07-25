@@ -8,7 +8,7 @@ from allennlp.models import Model
 from allennlp.predictors.predictor import Predictor
 import numpy as np
 
-from tag_scheme import tokenize_from_bios
+from many_tokenizer_as_one_model.tag_scheme import tokenize_from_bios
 
 
 class TokenizePredictor(Predictor):
